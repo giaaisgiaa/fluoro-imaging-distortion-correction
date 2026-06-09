@@ -1,0 +1,33 @@
+{
+    "timestamp": "280925_2248",
+    "training_mode": "pretrain",
+    "dataset_params": {
+        "num_images": 100,
+        "image_size": 256,
+        "min_dots": 50,
+        "max_dots": 150,
+        "dot_radius": 5,
+        "dataset_dir": "data/synthetic_xray_dataset"
+    },
+    "device": "mps",
+    "training": {
+        "perform_training": true,
+        "num_epochs": 1,
+        "final_metrics": {
+            "train": [
+                {
+                    "epoch": 1,
+                    "loss": 0.027257768992567436
+                }
+            ],
+            "val": [
+                {
+                    "epoch": 1,
+                    "loss": 0.0011575232539325951
+                }
+            ]
+        },
+        "completed_timestamp": "280925_2250",
+        "training_duration": "22:50:15"
+    }
+}

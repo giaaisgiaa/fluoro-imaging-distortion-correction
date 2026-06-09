@@ -1,0 +1,16 @@
+{
+    "timestamp": "290925_1458",
+    "training_mode": "pretrain",
+    "dataset_params": {
+        "num_images": 100,
+        "image_size": 256,
+        "min_dots": 50,
+        "max_dots": 150,
+        "dot_radius": 5,
+        "dataset_dir": "data/synthetic_xray_dataset"
+    },
+    "device": "mps",
+    "training": {
+        "perform_training": true
+    }
+}

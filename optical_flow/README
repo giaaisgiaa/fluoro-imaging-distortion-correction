@@ -1,0 +1,60 @@
+# Optical Flow (Experimental Approach)
+
+An experimental approach using optical flow for distortion correction in X-ray images, which ultimately proved unsuitable for this complex distortion correction task.
+
+## Technical Approach
+
+### Feature Detection and Tracking
+
+The pipeline uses a two-stage approach for tracking features across frames:
+
+1. **Feature Extraction (First Frame Only)**
+   - Utilizes the Shi-Tomasi corner detector (also known as Good Features to Track)
+   - Features are extracted only from the first frame to ensure consistent tracking
+   - The algorithm identifies corners by analyzing intensity gradients in local neighborhoods
+   - These features ideally correspond to the calibration grid dots
+
+2. **Feature Tracking (Subsequent Frames)**
+   - The Lucas-Kanade optical flow algorithm tracks the initially detected features
+   - Tracks features frame-by-frame by solving optical flow equations
+   - Assumes small motion between consecutive frames
+   - Attempts to follow the same physical points (dots) throughout the sequence
+
+### Why This Approach Was Chosen
+
+- Extracting features only in the first frame should theoretically allow for more reliable tracking of the same physical points over time
+- The Lucas-Kanade algorithm is well-suited for tracking sparse feature sets
+- The approach aimed to understand and correct underlying motion patterns of the dots
+
+## Limitations and Failure Modes
+
+The approach proved unsuccessful for several reasons:
+
+1. **Feature Loss**
+   - High percentage of features were lost during tracking
+   - Complex distortion patterns caused features to become untrackable
+
+2. **Motion Complexity**
+   - Sudden changes in the first derivative of motion
+   - Distortion patterns were too complex for the optical flow assumptions
+
+3. **Feature Ambiguity**
+   - Large number of dots (2028) with similar intensity values
+   - Difficult to maintain reliable feature correspondence
+
+## Setup Requirements
+
+1. Create folder "data" including subfolders:
+   - coordinates (JSON files, dots coordinates from Stage 1)
+   - frames (original X-Ray frames of calibration grid)
+   - frames_prepro (preprocessed calibration frames, if exist!)
+
+## Available Methods
+
+1. Original X-ray images with Shi-Tomasi corner detection
+2. Preprocessed binary images with Shi-Tomasi corner detection
+3. Use extracted dot centers (from JSON) as features
+
+## Conclusion
+
+ATTENTION: Due to the complex nature of the distortion problem in the dual Plane Tracking Fluoroscope, the optical flow approach was not able to reliably detect the motion patterns and was excluded as a viable method for distortion correction. The combination of feature loss, complex motion patterns, and feature ambiguity made it impossible to achieve reliable tracking results.

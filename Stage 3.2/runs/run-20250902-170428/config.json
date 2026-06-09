@@ -1,0 +1,17 @@
+{
+  "npz": "data/dataset.npz",
+  "val_frac": 0.1,
+  "window": 25,
+  "hidden": 64,
+  "layers": 1,
+  "dropout": 0.0,
+  "batch_size": 128,
+  "epochs": 50,
+  "lr": 0.001,
+  "seed": 42,
+  "device": "cuda",
+  "normalize": true,
+  "object_count": 2026,
+  "train_windows": 228000,
+  "val_windows": 25250
+}

@@ -1,0 +1,119 @@
+{
+    "timestamp": "280925_1505",
+    "dataset_params": {
+        "num_images": 100,
+        "image_size": 256,
+        "min_dots": 50,
+        "max_dots": 150,
+        "dot_radius": 5,
+        "dataset_dir": "data/synthetic_xray_dataset"
+    },
+    "device": "mps",
+    "training": {
+        "perform_training": true,
+        "num_epochs": 10,
+        "data_split": {
+            "train_size": 80,
+            "val_size": 20,
+            "train_ratio": 0.8
+        },
+        "batch_size": 4,
+        "optimizer": {
+            "name": "Adam",
+            "lr": 0.001
+        },
+        "model": {
+            "type": "UNet",
+            "input_channels": 1,
+            "output_channels": 1
+        },
+        "final_metrics": {
+            "train": [
+                {
+                    "epoch": 1,
+                    "loss": 0.03618077418766916
+                },
+                {
+                    "epoch": 2,
+                    "loss": 0.004167173013556748
+                },
+                {
+                    "epoch": 3,
+                    "loss": 0.003480227130930871
+                },
+                {
+                    "epoch": 4,
+                    "loss": 0.00288926484528929
+                },
+                {
+                    "epoch": 5,
+                    "loss": 0.002336999432882294
+                },
+                {
+                    "epoch": 6,
+                    "loss": 0.0018212000513449312
+                },
+                {
+                    "epoch": 7,
+                    "loss": 0.0013733410736313089
+                },
+                {
+                    "epoch": 8,
+                    "loss": 0.0009864718571770937
+                },
+                {
+                    "epoch": 9,
+                    "loss": 0.000723714082268998
+                },
+                {
+                    "epoch": 10,
+                    "loss": 0.0005183599991141818
+                }
+            ],
+            "val": [
+                {
+                    "epoch": 1,
+                    "loss": 0.004805594142526388
+                },
+                {
+                    "epoch": 2,
+                    "loss": 0.003910145964473486
+                },
+                {
+                    "epoch": 3,
+                    "loss": 0.0032592648733407257
+                },
+                {
+                    "epoch": 4,
+                    "loss": 0.0026779570709913967
+                },
+                {
+                    "epoch": 5,
+                    "loss": 0.002126304404810071
+                },
+                {
+                    "epoch": 6,
+                    "loss": 0.0016210948722437024
+                },
+                {
+                    "epoch": 7,
+                    "loss": 0.0011884409748017788
+                },
+                {
+                    "epoch": 8,
+                    "loss": 0.000855298948008567
+                },
+                {
+                    "epoch": 9,
+                    "loss": 0.0006314226076938212
+                },
+                {
+                    "epoch": 10,
+                    "loss": 0.00044591846759431067
+                }
+            ]
+        },
+        "completed_timestamp": "280925_1518",
+        "training_duration": "15:18:12"
+    }
+}

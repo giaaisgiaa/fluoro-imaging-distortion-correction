@@ -1,0 +1,76 @@
+## Stage 3.2: Motion Prediction with LSTM
+
+An alternative approach using LSTM neural networks for predicting dot trajectories.
+
+### Pipeline Steps and Execution
+
+1. **Data Transformation** (`transform_to_tracks.py`):
+   ```bash
+   python transform_to_tracks.py
+   ```
+   - Converts raw dot trajectories from `data/dot_trajectories.json` into processed tracks
+   - Outputs `data/tracks.json` for model training
+   - Generates the ML-ready dataset `data/dataset.npz`
+
+2. **Training the LSTM Model** (`train_lstm_with_anchors.py`):
+   ```bash
+   python train_lstm_with_anchors.py
+   ```
+   - Trains the LSTM model on the prepared dataset
+   - Creates a new run directory in `runs/run-TIMESTAMP/`
+
+3. **Visualization** (`viz_lstm_rollout.py`):
+   ```bash
+   python viz_lstm_rollout.py --run_dir runs/run-TIMESTAMP
+   ```
+   - Generates visualization of model predictions in `runs/run-TIMESTAMP/viz/`
+
+### Directory Structure
+
+```
+.
+├── data/
+│   ├── dataset.npz          # ML-ready dataset
+│   ├── dot_trajectories.json # Raw input data
+│   └── tracks.json          # Processed trajectory data
+├── runs/
+│   └── run-TIMESTAMP/       # Training run artifacts
+│       ├── config.json
+│       ├── model.pt
+│       ├── norm_mean.npy
+│       ├── norm_std.npy
+│       ├── splits.json
+│       └── viz/             # Visualization outputs
+└── *.py                     # Pipeline scripts
+```
+
+### LSTM Model Architecture
+
+The model uses the following vector structure:
+
+**Input x = (t, δt, xt, yt, x0, y0) ∈ ℝ⁶**
+- t: Current timestamp
+- δt: Time delta since sequence start
+- (xt, yt): Current dot position
+- (x0, y0): Anchor point (initial position)
+
+**Target y = (xt+1, yt+1) ∈ ℝ²**
+- Next timestamp dot position
+
+### Training Process
+
+1. **Data Preparation**:
+   - Trajectories are normalized using mean and standard deviation
+   - Data is split into training (80%) and validation (20%) sets
+   - Sequences are created with appropriate sliding windows
+
+2. **Model Training**:
+   - Loss function: Mean Squared Error (MSE)
+   - Optimization: Adam optimizer with learning rate scheduling
+   - Early stopping is implemented to prevent overfitting
+
+### Performance
+
+The LSTM model achieved submillimeter accuracy on the validation set, 
+but showed lower performance compared to the ensemble RBF kernel regression model from Stage 3.1. 
+Therefore, the RBF model was selected for implementation in Stage 4: Distortion Correction.
