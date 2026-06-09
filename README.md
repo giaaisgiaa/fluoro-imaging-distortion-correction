@@ -1,6 +1,6 @@
 # Distortion Correction Pipeline — ETH Zurich MSc Thesis
 
-> **Data availability**: The calibration X-ray images, videos, and derived trajectory data used in this project are proprietary data from the Laboratory for Machine and Biomechanics (LMB) at ETH Zurich and are not publicly distributed. Only the source code is available in this repository. To reproduce the results, please contact the [LMB lab](https://lmb.ethz.ch/) or refer to the original thesis.
+> **Data availability**: The calibration X-ray images, videos, and derived trajectory data used in this project are proprietary data from the Laboratory for Movement and Biomechanics (LMB) at ETH Zurich and are not publicly distributed. Only the source code is available in this repository. To reproduce the results, please contact the [LMB lab](https://lmb.ethz.ch/) or refer to the original thesis.
 
 ## Overview
 
@@ -36,12 +36,12 @@ Raw fluoroscopic X-ray video (1664 × 1600 px)
 | Stage | Model | Validation RMSE |
 |-------|-------|-----------------|
 | 1 – Dot Detection | U-Net (pretrain → finetune) | 100% detection rate, ~1.2 px error |
-| 3 – Motion | **Ensemble RBF Kernels** | **0.60 ± 0.04 px (~0.13 mm)** ✓ selected |
-| 3 – Motion | Single RBF Kernel | 0.62 ± 0.04 px |
-| 3 – Motion | XGBoost | 1.20 ± 0.71 px |
-| 3 – Motion | LSTM (Stage 3.2) | 4.17 ± 0.34 px (~0.90 mm) |
-| 3 – Motion | Polynomial Regression (degree 3) | 4.18 ± 2.12 px |
-| 3 – Motion | Linear Regression | 7.54 ± 4.10 px |
+| 3 – Motion Prediction | **Ensemble RBF Kernels** | **0.60 ± 0.04 px (~0.13 mm)** ✓ selected |
+| 3 – Motion Prediction | Single RBF Kernel | 0.62 ± 0.04 px |
+| 3 – Motion Prediction | XGBoost | 1.20 ± 0.71 px |
+| 3 – Motion Prediction | LSTM (Stage 3.2) | 4.17 ± 0.34 px (~0.90 mm) |
+| 3 – Motion Prediction | Polynomial Regression (degree 3) | 4.18 ± 2.12 px |
+| 3 – Motion Prediction | Linear Regression | 7.54 ± 4.10 px |
 
 ### Tech Stack
 
